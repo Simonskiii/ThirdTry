@@ -43,17 +43,32 @@ class articleFragment : Fragment() {
         viewModel.lineData = MutableLiveData()
         viewModel.lineData.value = mutableListOf()
         viewModel.addData()
+
         line_recy_view.layoutManager = LinearLayoutManager(this.context)
         val adapter = articleItemsAdapter(this.context, viewModel.lineData.value)
         line_recy_view.adapter = adapter
         val nameObserver = Observer<MutableList<Map<String, Any>>> {
+            //            tv.text = viewModel.lineData.value!!.get(1).values.toString()
             adapter.notifyDataSetChanged()
         }
         viewModel.lineData.observe(this, nameObserver)
 //        line_recy_view.addItemDecoration(BottomPaddingDecoration(10))
         SRL.setOnRefreshListener {
-            viewModel.lineData.value?.clear()
-            viewModel.addData()
+            //            viewModel.lineData.value?.clear()
+//            viewModel.addData()
+
+            val data = mutableListOf<Map<String, Any>>()
+            for (i in 0..29) {
+                val random = Random
+                val n = random.nextInt(viewModel.pics.size)
+                val map : MutableMap<String, Any>? = HashMap()
+                map?.set("pic", viewModel.pics[n])
+                map?.set("name", viewModel.names[n])
+                map?.set("desc", "我是一只" + viewModel.names[n])
+                data.add(map as HashMap<String, Any>)
+            }
+            viewModel.lineData.value = data
+
             Handler().postDelayed({
                 if (SRL.isRefreshing) {
                     SRL.isRefreshing = false
