@@ -1,7 +1,4 @@
-# ClassDesign
-
-Android development
-____________
+# ClassDesign(Android)
 
 ## 2019-10-26 12:34
 
