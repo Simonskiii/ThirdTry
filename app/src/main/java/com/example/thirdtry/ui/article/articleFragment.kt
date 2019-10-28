@@ -9,18 +9,13 @@ import android.view.ViewGroup
 import com.example.thirdtry.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.article_fragment.*
-
-import kotlin.collections.HashMap
-import androidx.recyclerview.widget.RecyclerView
-import android.graphics.Rect
 import androidx.lifecycle.Observer
-import kotlin.random.Random
-import androidx.core.os.HandlerCompat.postDelayed
-import android.text.method.TextKeyListener.clear
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.core.os.HandlerCompat.postDelayed
 import android.os.Handler
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.Glide
+import com.example.thirdtry.databinding.ArticleItemsLayoutBinding
 
 
 class articleFragment : Fragment() {
@@ -29,7 +24,7 @@ class articleFragment : Fragment() {
     }
 
     private lateinit var viewModel: ArticleViewModel
-
+    private lateinit var binding: ArticleItemsLayoutBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,21 +39,21 @@ class articleFragment : Fragment() {
         viewModel.lineData.value = mutableListOf()
         viewModel.addData()
         line_recy_view.layoutManager = LinearLayoutManager(this.context)
-        val adapter = articleItemsAdapter(this.context, viewModel.lineData.value)
+        val adapter = articleItemsdbAdapter(viewModel.lineData.value!!)
         line_recy_view.adapter = adapter
-        val nameObserver = Observer<MutableList<Map<String, Any>>> {
-            adapter.notifyDataSetChanged()
+        val nameObserver = Observer<MutableList<Article>> {
         }
         viewModel.lineData.observe(this, nameObserver)
 //        line_recy_view.addItemDecoration(BottomPaddingDecoration(10))
         SRL.setOnRefreshListener {
             viewModel.lineData.value?.clear()
             viewModel.addData()
+            adapter.notifyDataSetChanged()
             Handler().postDelayed({
                 if (SRL.isRefreshing) {
                     SRL.isRefreshing = false
                 }
-            }, 1000)
+            }, 750)
         }
         // TODO: Use the ViewModel
     }
