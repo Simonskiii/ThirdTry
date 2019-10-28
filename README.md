@@ -1,6 +1,6 @@
 # ClassDesign(Android)
 
-## 2019-10-26 12:34
+## 2019-10-26 00:34
 
 ### I am trying to implement the Swipe-Refresh of a recyclerlayout
 
@@ -11,3 +11,9 @@ It's easy to find that Observer and Livedata are contradictory. One needs the ch
 So I got the conclusion, I can't implement the function with them.
 
 --------------------
+
+## 2019-10-28 23:47
+
+### I have accomplished the combination between databinding and recyclerview
+
+I am so happy that I have finished the deployment of Google JetPack besides the combination between dataBinding and recyclerview.I will keep in mind forever that this sentence -"apply plugin: 'kotlin-kapt'" trapped me for the whole day. I spent the whole day to figure out what's the main reason of a bug - "BindingImpl 找不到符号" & "If a binding adapter provides the setter, check that the adapter is annotated correctly and that the parameter type matches".(I hate these two sentences). All in all, it is not so difficult to make databinding and recyclerview together, due to my finding a perfect wheel(haha) - a RecyclerviewAdapter specialized for databinding. Good night
