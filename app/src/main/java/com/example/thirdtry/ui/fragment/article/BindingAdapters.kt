@@ -1,10 +1,8 @@
-package com.example.thirdtry.ui.article
+package com.example.thirdtry.ui.fragment.article
 
-import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.example.thirdtry.R
 
 object BindingAdapters{
     @BindingAdapter("bind:imageUrl")

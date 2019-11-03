@@ -1,13 +1,13 @@
-package com.example.thirdtry.ui
+package com.example.thirdtry.ui.activity.Main
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.thirdtry.R
-import com.example.thirdtry.ui.article.articleFragment
-import com.example.thirdtry.ui.scheme.schemeFragment
-import com.example.thirdtry.ui.user.userFragment
+import com.example.thirdtry.ui.fragment.article.ArticleFragment
+import com.example.thirdtry.ui.fragment.scheme.SchemeFragment
+import com.example.thirdtry.ui.fragment.user.UserFragment
 
 
 /**
@@ -36,9 +36,9 @@ class MainViewPagerAdapter(
 
     override fun getItem(position: Int): Fragment {
         return when (getItemType(position)) {
-            MainFragments.SCHEMES -> schemeFragment()
-            MainFragments.ARTICLES -> articleFragment()
-            MainFragments.USERS -> userFragment()
+            MainFragments.SCHEMES -> SchemeFragment()
+            MainFragments.ARTICLES -> ArticleFragment()
+            MainFragments.USERS -> UserFragment()
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.thirdtry.ui.article
+package com.example.thirdtry.ui.fragment.article
 
 
 

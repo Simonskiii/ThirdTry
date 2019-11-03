@@ -1,4 +1,4 @@
-package com.example.thirdtry.ui.article
+package com.example.thirdtry.ui.fragment.article
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View

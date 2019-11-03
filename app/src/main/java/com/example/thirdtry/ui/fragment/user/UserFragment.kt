@@ -1,4 +1,4 @@
-package com.example.thirdtry.ui.user
+package com.example.thirdtry.ui.fragment.user
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -8,14 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.thirdtry.R
+import com.example.thirdtry.ui.base.BaseFragment
 
-class userFragment : Fragment() {
+class UserFragment : Fragment() {
+    private lateinit var viewModel: UserViewModel
+
+
 
     companion object {
-        fun newInstance() = userFragment()
+        fun newInstance() = UserFragment()
     }
 
-    private lateinit var viewModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

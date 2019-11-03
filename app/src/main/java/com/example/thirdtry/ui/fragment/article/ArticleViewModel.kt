@@ -1,9 +1,11 @@
-package com.example.thirdtry.ui.article
+package com.example.thirdtry.ui.fragment.article
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thirdtry.R
-import kotlin.collections.HashMap
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Query
 import kotlin.random.Random
 
 class ArticleViewModel : ViewModel() {
@@ -35,6 +37,13 @@ class ArticleViewModel : ViewModel() {
         }
     }
 
+
+    interface Api {
+        @GET("getSingleJoke")
+        fun category(@Query("sid") sid: String): Call<article1>
+//                     @Query("count") count: Int,
+//                     @Query("type") type: String) : Call<article1>
+    }
 
 
     // TODO: Implement the ViewModel

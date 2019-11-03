@@ -1,4 +1,4 @@
-package com.example.thirdtry.ui.scheme
+package com.example.thirdtry.ui.fragment.scheme
 
 import androidx.lifecycle.ViewModel
 

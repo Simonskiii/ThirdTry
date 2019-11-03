@@ -9,7 +9,7 @@
 
         <variable
             name="data"
-            type="com.example.thirdtry.ui.article.Article" />
+            type="com.example.thirdtry.ui.fragment.article.Article" />
         <variable
             name="url"
             type="int" />

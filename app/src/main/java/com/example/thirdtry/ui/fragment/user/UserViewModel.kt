@@ -1,4 +1,4 @@
-package com.example.thirdtry.ui.user
+package com.example.thirdtry.ui.fragment.user
 
 import androidx.lifecycle.ViewModel
 

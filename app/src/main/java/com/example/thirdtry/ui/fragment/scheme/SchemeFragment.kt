@@ -1,4 +1,4 @@
-package com.example.thirdtry.ui.scheme
+package com.example.thirdtry.ui.fragment.scheme
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,10 +9,10 @@ import android.view.ViewGroup
 
 import com.example.thirdtry.R
 
-class schemeFragment : Fragment() {
+class SchemeFragment : Fragment() {
 
     companion object {
-        fun newInstance() = schemeFragment()
+        fun newInstance() = SchemeFragment()
     }
 
     private lateinit var viewModel: SchemeViewModel
