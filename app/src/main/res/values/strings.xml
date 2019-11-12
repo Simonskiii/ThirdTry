@@ -14,7 +14,7 @@
 ~ limitations under the License.
 -->
 
-<resources tools:ignore="ExtraTranslation" xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
     <string name="app_name">3&amp;7</string>
     <string name="theme_name_hint">Theme name...</string>
     <string name="login_username">用户名</string>
@@ -112,4 +112,5 @@
     <string name="text_appearance_button_label">Button</string>
     <string name="text_appearance_caption_label">Caption</string>
     <string name="text_appearance_overline_label">Overline</string>
+    <string name="title_activity_search">SearchActivity</string>
 </resources>
