@@ -30,4 +30,13 @@
     <dimen name="alpha_emphasis_high">@dimen/material_emphasis_high_type</dimen>
     <dimen name="alpha_emphasis_medium">@dimen/material_emphasis_medium</dimen>
     <dimen name="alpha_emphasis_disabled">@dimen/material_emphasis_disabled</dimen>
+<<<<<<< Updated upstream
+=======
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="dividerHeight">3dp</dimen>
+>>>>>>> Stashed changes
 </resources>

@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< Updated upstream
     tools:context=".ui.article.articleFragment"
+=======
+    tools:context=".ui.fragment.article.ArticleFragment"
+    android:id="@+id/article_fragment"
+>>>>>>> Stashed changes
     >
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/SRL"
@@ -15,15 +21,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="40dp"/>
-
-
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    <TextView
-        android:id="@+id/tv"
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.Circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ddddd"
-        android:layout_gravity="center"/>
-
+        android:layout_gravity="center"
+        app:SpinKit_Color="@color/material_on_surface_disabled"
+        android:visibility="invisible"/>
 
 </FrameLayout>

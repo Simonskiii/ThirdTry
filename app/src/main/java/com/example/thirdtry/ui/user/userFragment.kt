@@ -8,6 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.thirdtry.R
+<<<<<<< Updated upstream:app/src/main/java/com/example/thirdtry/ui/user/userFragment.kt
+=======
+
+class UserFragment : Fragment() {
+    private lateinit var viewModel: UserViewModel
+
+>>>>>>> Stashed changes:app/src/main/java/com/example/thirdtry/ui/fragment/user/UserFragment.kt
 
 class userFragment : Fragment() {
 

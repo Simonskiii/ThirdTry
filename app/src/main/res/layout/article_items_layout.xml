@@ -5,14 +5,17 @@
 
     <data>
 
-        <import type="java.util.Map" />
-
         <variable
             name="data"
+<<<<<<< Updated upstream
             type="com.example.thirdtry.ui.article.Article" />
         <variable
             name="url"
             type="int" />
+=======
+            type="com.example.thirdtry.model.Article" />
+
+>>>>>>> Stashed changes
     </data>
 
     <androidx.cardview.widget.CardView
@@ -31,7 +34,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{data.pic}" />
+                 />
 
             <TextView
                 android:id="@+id/tv_recy_item_1_name"
@@ -39,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textSize="23sp"
-                android:text="@{data.name}"/>
+                android:text="@{Integer.toString(data.id)}"/>
 
             <TextView
                 android:id="@+id/tv_recy_item_1_desc"

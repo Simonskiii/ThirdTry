@@ -20,9 +20,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+<<<<<<< Updated upstream:app/src/main/java/com/example/thirdtry/ui/MainActivity.kt
         viewPager = findViewById(R.id.view_pager)
         bn_view = findViewById(R.id.b_view)
         bn_view.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener {
+=======
+        b_view.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener {
+>>>>>>> Stashed changes:app/src/main/java/com/example/thirdtry/ui/activity/Main/MainActivity.kt
             when (it.itemId) {
                 R.id.bottom_nav_scheme -> {
                     viewPager.currentItem = 0
@@ -39,23 +43,30 @@ class MainActivity : AppCompatActivity() {
             }
             false
         })
+<<<<<<< Updated upstream:app/src/main/java/com/example/thirdtry/ui/MainActivity.kt
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(i: Int, v: Float, i1: Int) {
 
             }
+=======
+        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(i: Int, v: Float, i1: Int) {}
+>>>>>>> Stashed changes:app/src/main/java/com/example/thirdtry/ui/activity/Main/MainActivity.kt
 
             override fun onPageSelected(i: Int) {
                 //将滑动到的页面对应的 menu 设置为选中状态
                 bn_view.getMenu().getItem(i).setChecked(true)
             }
-
-            override fun onPageScrollStateChanged(i: Int) {
-
-            }
+            override fun onPageScrollStateChanged(i: Int) {}
         })
 
         val adapter = MainViewPagerAdapter(this, supportFragmentManager)
+<<<<<<< Updated upstream:app/src/main/java/com/example/thirdtry/ui/MainActivity.kt
         viewPager.adapter = adapter
+=======
+        view_pager.adapter = adapter
+
+>>>>>>> Stashed changes:app/src/main/java/com/example/thirdtry/ui/activity/Main/MainActivity.kt
 
     }
 
