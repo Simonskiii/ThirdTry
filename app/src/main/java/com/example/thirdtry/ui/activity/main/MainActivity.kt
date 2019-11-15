@@ -1,11 +1,11 @@
-package com.example.thirdtry.ui.activity.Main
+package com.example.thirdtry.ui.activity.main
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import com.example.thirdtry.R
-import com.example.thirdtry.ui.activity.SearchActivity.SearchActivity
+import com.example.thirdtry.ui.activity.searchActivity.SearchActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 

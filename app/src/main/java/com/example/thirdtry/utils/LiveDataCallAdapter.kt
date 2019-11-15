@@ -2,6 +2,7 @@ package com.example.thirdtry.utils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.thirdtry.ui.activity.login.LoginModel
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Callback
@@ -23,10 +24,7 @@ class LiveDataCallAdapter<R>(private val responseType: Type) :
                 if (started.compareAndSet(false, true)) {
                     call.enqueue(object : Callback<R> {
                         override fun onResponse(call: Call<R>, response: Response<R>) {
-                            val a = response.body()
-                            val b = a.toString()
                             postValue(response.body())
-
                         }
                         override fun onFailure(call: Call<R>, throwable: Throwable) {
                             postValue(null)

@@ -35,6 +35,9 @@ class ArticleFragment : BaseFragment() {
                     adapter.notifyDataSetChanged()
                     spin_kit.visibility = View.GONE
                 }
+                else{
+                    adapter.setNewData(articles)
+                }
             }
         }
     }
@@ -51,8 +54,8 @@ class ArticleFragment : BaseFragment() {
         line_recy_view.layoutManager = LinearLayoutManager(this.context)
         line_recy_view.adapter = adapter
         SRL.setOnRefreshListener {
+            var result = viewModel.getArticles()
             viewModel.getArticles().observe(this, mObserver)
-            this.articles.clear()
             //下拉刷新图标持续时间
             Handler().postDelayed({
                 if (SRL.isRefreshing) {

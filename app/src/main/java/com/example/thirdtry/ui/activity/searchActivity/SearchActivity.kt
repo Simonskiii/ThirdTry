@@ -1,4 +1,4 @@
-package com.example.thirdtry.ui.activity.SearchActivity
+package com.example.thirdtry.ui.activity.searchActivity
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar

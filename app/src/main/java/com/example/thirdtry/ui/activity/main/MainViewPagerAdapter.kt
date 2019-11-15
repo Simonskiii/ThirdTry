@@ -1,4 +1,4 @@
-package com.example.thirdtry.ui.activity.Main
+package com.example.thirdtry.ui.activity.main
 
 import android.annotation.SuppressLint
 import android.content.Context

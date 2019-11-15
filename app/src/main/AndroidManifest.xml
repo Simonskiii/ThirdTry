@@ -12,17 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyTheme.DayNight">
-        <activity android:name=".ui.activity.Login.LoginActivity"></activity>
-        <activity
-            android:name=".ui.activity.SearchActivity.SearchActivity"
-            android:label="@string/title_activity_search"
-            android:theme="@style/MyTheme.DayNight.NoActionBar" />
-        <activity android:name=".ui.activity.Main.MainActivity">
+        <activity android:name=".ui.activity.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.searchActivity.SearchActivity"
+            android:label="@string/title_activity_search"
+            android:theme="@style/MyTheme.DayNight.NoActionBar" />
+        <activity android:name=".ui.activity.main.MainActivity">
+
         </activity>
     </application>
 
