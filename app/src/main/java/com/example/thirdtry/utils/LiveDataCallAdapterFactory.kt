@@ -16,7 +16,6 @@ class LiveDataCallAdapterFactory : Factory() {
         retrofit: Retrofit
     ): CallAdapter<*, *>? {
         val responseType: Type
-
         if (Factory.getRawType(returnType) != MutableLiveData::class.java) {
             throw IllegalStateException("return type must be parameterized")
         }

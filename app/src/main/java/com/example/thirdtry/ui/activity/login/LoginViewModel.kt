@@ -15,19 +15,26 @@ import kotlinx.coroutines.delay
 
 class LoginViewModel : ViewModel() {
 
-    val _loginForm = MutableLiveData<LoginFormState>()
+    private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
 
-    val _loginResult = MutableLiveData<LoginResult>()
+    private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
+
+    fun loginRequest(username: String, password: String): MutableLiveData<LoginModel>{
+        return RetrofitClient.serviceApi.login(username, password)
+    }
+
+//    val result(username: String, password: String){
+//        result = RetrofitClient.serviceApi.login(username, password)
+//    }
 
     fun login1(username: String, password: String) :MutableLiveData<LoginModel>
             = RetrofitClient.serviceApi.login(username, password)
 
-    fun login(username: String, password: String) {
+    fun getLoginResult(response : LoginModel) {
         // can be launched in a separate asynchronous job
-        val result = RetrofitClient.serviceApi.login(username, password)
-        if (result.value!!.token !=null) {
+        if (response.token !=null) {
             _loginResult.value = LoginResult(success = "yes")
         } else {
             _loginResult.value = LoginResult(error = R.string.login_failed)

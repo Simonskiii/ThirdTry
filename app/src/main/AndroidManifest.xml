@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyTheme.DayNight">
+        <activity android:name=".ui.activity.register.RegisterActivity"></activity>
         <activity android:name=".ui.activity.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +24,7 @@
             android:name=".ui.activity.searchActivity.SearchActivity"
             android:label="@string/title_activity_search"
             android:theme="@style/MyTheme.DayNight.NoActionBar" />
-        <activity android:name=".ui.activity.main.MainActivity">
-
-        </activity>
+        <activity android:name=".ui.activity.main.MainActivity"></activity>
     </application>
 
 </manifest>
