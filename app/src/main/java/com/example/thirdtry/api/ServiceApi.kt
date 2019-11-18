@@ -1,12 +1,10 @@
 package com.example.thirdtry.api
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.thirdtry.base.BaseDataResult
 import com.example.thirdtry.base.BaseResult
 import com.example.thirdtry.model.Article
 import com.example.thirdtry.ui.activity.login.LoginModel
-import com.example.thirdtry.ui.activity.login.LoginResult
-import retrofit2.Call
 import retrofit2.http.*
 
 /**
@@ -17,19 +15,34 @@ import retrofit2.http.*
 
 interface ServiceApi {
     @GET("getSingleJoke")
-    fun getSingleJoke(@Query("sid") sid: String): MutableLiveData<BaseResult<Article>>
+    fun getSingleJoke(@Query("sid") sid: String): MutableLiveData<BaseDataResult<Article>>
 
     @GET("getJoke")
     fun getJoke(
         @Query("page") page: Int, @Query("count") count: Int,
         @Query("type") type: String
-    ): MutableLiveData<BaseResult<MutableList<Article>>>
+    ): MutableLiveData<BaseDataResult<MutableList<Article>>>
 
     @GET("g/articles")
-    fun getArticles(): MutableLiveData<MutableList<Article>>
+    fun getArticles(): MutableLiveData<BaseDataResult<MutableList<Article>>>
 
     @POST("jwt-token-auth/")
     @FormUrlEncoded
     fun login(@Field("username") username: String, @Field("password") password: String):
-            MutableLiveData<LoginModel>
+            MutableLiveData<BaseDataResult<LoginModel>>
+
+    @POST("jwt-token-refresh/")
+    @FormUrlEncoded
+    fun refresh_login(@Field("token") token: String):
+            MutableLiveData<BaseDataResult<LoginModel>>
+
+    @POST("/g/verify/")
+    @FormUrlEncoded
+    fun verify(@Field("email") email: String):
+            MutableLiveData<BaseResult>
+    @POST("/g/user/")
+    @FormUrlEncoded
+    fun register(@Field("name") name: String,@Field("password") password: String,
+                 @Field("email") email: String,@Field("code") code: String):
+            MutableLiveData<BaseResult>
 }

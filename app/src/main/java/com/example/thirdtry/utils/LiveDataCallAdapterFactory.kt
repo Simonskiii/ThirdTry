@@ -20,12 +20,13 @@ class LiveDataCallAdapterFactory : Factory() {
             throw IllegalStateException("return type must be parameterized")
         }
         val observableType = Factory.getParameterUpperBound(0, returnType as ParameterizedType)
+        val a = observableType
         val rawObservableType = Factory.getRawType(observableType)
         responseType = if (rawObservableType == Response::class.java) {
             if (observableType !is ParameterizedType) {
                 throw IllegalArgumentException("Response must be parameterized")
             }
-            Factory.getParameterUpperBound(0, observableType)
+            Factory.getParameterUpperBound(1, observableType)
         } else {
             observableType
         }

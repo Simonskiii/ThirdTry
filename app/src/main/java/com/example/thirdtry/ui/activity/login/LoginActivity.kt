@@ -15,7 +15,14 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
 import com.example.thirdtry.ui.activity.main.MainActivity
+import com.example.thirdtry.ui.activity.register.RegisterActivity
+import com.example.thirdtry.utils.afterTextChanged
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.loading
+import kotlinx.android.synthetic.main.activity_login.password
+import kotlinx.android.synthetic.main.activity_login.register
+import kotlinx.android.synthetic.main.activity_login.username
+import kotlinx.android.synthetic.main.activity_register.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -24,10 +31,58 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        //初始化loginViewModel
+
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
+        val s = getSharedPreferences("loginToken", 0)
+        val token = s.getString("token", "")
+        if(token?.length==0){
+            loginFun()
+        }
+        else{
+            //初始化loginViewModel
+            loginViewModel.refreshLoginRequest(token!!)
+                .observe(this@LoginActivity, Observer {
+                    if (it == null) {
+                        Toast.makeText(this@LoginActivity, "无网络连接", Toast.LENGTH_SHORT)
+                            .show()
+                        loading.visibility = View.GONE
+                        intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                        return@Observer
+                    }
+                    else {
+                        loginViewModel.getRefreshLoginResult(it)
+                    }
+                })
+            //观察登录成功与否，并做出反应
+            loginViewModel.refreshLoginResult.observe(this@LoginActivity, Observer { it1 ->
+                val refreshLoginResult = it1 ?: return@Observer
+                loading.visibility = View.GONE
+                if (refreshLoginResult.error != null) {
+                    Toast.makeText(this@LoginActivity, "登录过期，请重新登录", Toast.LENGTH_SHORT)
+                        .show()
+                    loginFun()
+                }
+                if (refreshLoginResult.success != null) {
+                    val sp = getSharedPreferences("loginToken", 0)
+                    val editor = sp.edit()
+                    updateUiWithUser(sp.getString("name","")!!)
+                    editor.remove("token")
+                    editor.putString("token", refreshLoginResult.success.token)
+                    editor.apply()
+                    finish()
+                }
+                setResult(Activity.RESULT_OK)
 
+                //Complete and destroy login activity once successful
+            })
+        }
+
+    }
+
+    private fun loginFun(){
         //app中editText的账号密码规范检查
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
             val loginState = it ?: return@Observer
@@ -41,7 +96,10 @@ class LoginActivity : AppCompatActivity() {
                 password.error = getString(loginState.passwordError)
             }
         })
-
+        register.setOnClickListener {
+            intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
         //username输入时，实时将值传入，以检测是否规范
         username.afterTextChanged {
             loginViewModel.loginDataChanged(
@@ -62,13 +120,17 @@ class LoginActivity : AppCompatActivity() {
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
                         //发出post请求并对response进行观察
-                        loginViewModel.loginRequest(username.text.toString(),password.text.toString())
-                            .observe(this@LoginActivity, Observer{
-                                if (it == null){
-                                    Toast.makeText(this@LoginActivity, "无网络连接", Toast.LENGTH_SHORT).show()
+                        loginViewModel.loginRequest(
+                            username.text.toString(),
+                            password.text.toString()
+                        )
+                            .observe(this@LoginActivity, Observer {
+                                if (it == null) {
+                                    Toast.makeText(this@LoginActivity, "无网络连接", Toast.LENGTH_SHORT)
+                                        .show()
+                                    loading.visibility = View.GONE
                                     return@Observer
-                                }
-                                else{
+                                } else {
                                     loginViewModel.getLoginResult(it)
                                 }
                             })
@@ -79,13 +141,13 @@ class LoginActivity : AppCompatActivity() {
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
                 //发出post请求并对response进行观察
-                loginViewModel.loginRequest(username.text.toString(),password.text.toString())
-                    .observe(this@LoginActivity, Observer{
-                        if (it == null){
-                            Toast.makeText(this@LoginActivity, "无网络连接", Toast.LENGTH_SHORT).show()
+                loginViewModel.loginRequest(username.text.toString(), password.text.toString())
+                    .observe(this@LoginActivity, Observer {
+                        if (it == null) {
+                            Toast.makeText(this@LoginActivity, "无网络连接", Toast.LENGTH_LONG).show()
+                            loading.visibility = View.GONE
                             return@Observer
-                        }
-                        else{
+                        } else {
                             loginViewModel.getLoginResult(it)
                         }
                     })
@@ -99,7 +161,14 @@ class LoginActivity : AppCompatActivity() {
                 showLoginFailed(loginResult.error)
             }
             if (loginResult.success != null) {
-                updateUiWithUser()
+                val sp = getSharedPreferences("loginToken", 0)
+                val editor = sp.edit()
+                loginResult.success.name?.let { it1 ->
+                    updateUiWithUser(it1)
+                    editor.putString("name", it1)
+                }
+                editor.putString("token", loginResult.success.token)
+                editor.apply()
                 finish()
             }
             setResult(Activity.RESULT_OK)
@@ -110,11 +179,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     //登录成功后的反应
-    private fun updateUiWithUser() {
+    private fun updateUiWithUser(name: String) {
         val welcome = getString(R.string.welcome)
         Toast.makeText(
             applicationContext,
-            welcome,
+            "$welcome,$name",
             Toast.LENGTH_LONG
         ).show()
         intent = Intent(this, MainActivity::class.java)
@@ -122,19 +191,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     //登录失败后的反应
-    private fun showLoginFailed(@StringRes errorString: Int) {
+    private fun showLoginFailed(errorString: String) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }
 }
-fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
-    this.addTextChangedListener(object : TextWatcher {
-        override fun afterTextChanged(editable: Editable?) {
-            afterTextChanged.invoke(editable.toString())
-        }
 
-        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-    })
-}
 

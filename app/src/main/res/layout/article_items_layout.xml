@@ -4,7 +4,6 @@
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="data"
             type="com.example.thirdtry.model.Article" />
@@ -36,7 +35,6 @@
                 android:layout_marginTop="8dp"
                 android:textSize="23sp"
                 android:text="@{Integer.toString(data.id)}"/>
-
             <TextView
                 android:id="@+id/tv_recy_item_1_desc"
                 android:layout_width="wrap_content"

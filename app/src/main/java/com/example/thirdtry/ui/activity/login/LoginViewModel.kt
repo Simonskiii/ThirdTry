@@ -1,43 +1,48 @@
 package com.example.thirdtry.ui.activity.login
 
 import android.util.Patterns
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.thirdtry.R
 import com.example.thirdtry.api.RetrofitClient
-import com.example.thirdtry.model.Article
-import kotlinx.android.synthetic.main.article_fragment.*
-import kotlinx.coroutines.delay
+import com.example.thirdtry.base.BaseDataResult
+import com.example.thirdtry.base.BaseResponseResult
 
 class LoginViewModel : ViewModel() {
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
 
-    private val _loginResult = MutableLiveData<LoginResult>()
-    val loginResult: LiveData<LoginResult> = _loginResult
+    private val _loginResult = MutableLiveData<LoginResponseResult>()
+    val loginResult: LiveData<LoginResponseResult> = _loginResult
 
-    fun loginRequest(username: String, password: String): MutableLiveData<LoginModel>{
+    private val _refreshLoginResult = MutableLiveData<LoginResponseResult>()
+    val refreshLoginResult: LiveData<LoginResponseResult> = _refreshLoginResult
+
+    fun loginRequest(username: String, password: String): MutableLiveData<BaseDataResult<LoginModel>>{
         return RetrofitClient.serviceApi.login(username, password)
     }
 
-//    val result(username: String, password: String){
-//        result = RetrofitClient.serviceApi.login(username, password)
-//    }
+    fun refreshLoginRequest(token:String): MutableLiveData<BaseDataResult<LoginModel>>{
+        return RetrofitClient.serviceApi.refresh_login(token)
+    }
 
-    fun login1(username: String, password: String) :MutableLiveData<LoginModel>
-            = RetrofitClient.serviceApi.login(username, password)
-
-    fun getLoginResult(response : LoginModel) {
+    fun getLoginResult(response : BaseDataResult<LoginModel>) {
         // can be launched in a separate asynchronous job
-        if (response.token !=null) {
-            _loginResult.value = LoginResult(success = "yes")
+        if (response.success !=null) {
+            _loginResult.value = LoginResponseResult(success = response.subjects)
         } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
+            _loginResult.value = LoginResponseResult(error = "登录失败")
+        }
+    }
+
+    fun getRefreshLoginResult(response : BaseDataResult<LoginModel>) {
+        // can be launched in a separate asynchronous job
+        if (response.success !=null) {
+            _refreshLoginResult.value = LoginResponseResult(success = response.subjects)
+        } else {
+            _refreshLoginResult.value = LoginResponseResult(error = "登录失败")
         }
     }
 

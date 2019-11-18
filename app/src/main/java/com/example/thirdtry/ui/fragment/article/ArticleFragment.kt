@@ -8,12 +8,10 @@ import androidx.lifecycle.Observer
 import android.os.Handler
 import android.view.View
 import android.widget.Toast
-import com.example.thirdtry.api.RetrofitClient
 import com.example.thirdtry.databinding.ArticleItemsLayoutBinding
 import com.example.thirdtry.base.BaseFragment
-import com.example.thirdtry.base.BaseResult
+import com.example.thirdtry.base.BaseDataResult
 import com.example.thirdtry.model.Article
-import com.github.ybq.android.spinkit.style.DoubleBounce
 
 
 class ArticleFragment : BaseFragment() {
@@ -23,15 +21,15 @@ class ArticleFragment : BaseFragment() {
     private val adapter: ArticleBindingAdapter by lazy {
         ArticleBindingAdapter(articles)
     }
-    protected val mObserver: Observer<MutableList<Article>> by lazy {
-        Observer<MutableList<Article>> {
+    protected val mObserver: Observer<BaseDataResult<MutableList<Article>>> by lazy {
+        Observer<BaseDataResult<MutableList<Article>>> {
             if (it == null){
                 Toast.makeText(activity, "无网络连接", Toast.LENGTH_SHORT).show()
                 return@Observer
             }
             else{
                 if (articles.isEmpty()) {
-                    this.articles.addAll(it)
+                    this.articles.addAll(it.subjects)
                     adapter.notifyDataSetChanged()
                     spin_kit.visibility = View.GONE
                 }
