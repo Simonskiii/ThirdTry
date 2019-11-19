@@ -18,15 +18,11 @@ class LoginViewModel : ViewModel() {
     val loginResult: LiveData<LoginResponseResult> = _loginResult
 
     private val _refreshLoginResult = MutableLiveData<LoginResponseResult>()
-    val refreshLoginResult: LiveData<LoginResponseResult> = _refreshLoginResult
 
     fun loginRequest(username: String, password: String): MutableLiveData<BaseDataResult<LoginModel>>{
         return RetrofitClient.serviceApi.login(username, password)
     }
 
-    fun refreshLoginRequest(token:String): MutableLiveData<BaseDataResult<LoginModel>>{
-        return RetrofitClient.serviceApi.refresh_login(token)
-    }
 
     fun getLoginResult(response : BaseDataResult<LoginModel>) {
         // can be launched in a separate asynchronous job
@@ -34,15 +30,6 @@ class LoginViewModel : ViewModel() {
             _loginResult.value = LoginResponseResult(success = response.subjects)
         } else {
             _loginResult.value = LoginResponseResult(error = "登录失败")
-        }
-    }
-
-    fun getRefreshLoginResult(response : BaseDataResult<LoginModel>) {
-        // can be launched in a separate asynchronous job
-        if (response.success !=null) {
-            _refreshLoginResult.value = LoginResponseResult(success = response.subjects)
-        } else {
-            _refreshLoginResult.value = LoginResponseResult(error = "登录失败")
         }
     }
 

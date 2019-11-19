@@ -82,7 +82,7 @@ class RegisterActivity : AppCompatActivity() {
                 registerViewModel.verifyRequest(email.text.toString())
                     .observe(this@RegisterActivity, Observer{
                         if (it == null){
-                            Toast.makeText(this@RegisterActivity, "无网络连接", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@RegisterActivity, "网络开小差了，请稍后", Toast.LENGTH_LONG).show()
                             loading.visibility = View.GONE
                             return@Observer
                         }
@@ -109,7 +109,7 @@ class RegisterActivity : AppCompatActivity() {
                         registerViewModel.registerRequest(username.text.toString(),password.text.toString(),email.text.toString(),verify_code.text.toString())
                             .observe(this@RegisterActivity, Observer{
                                 if (it == null){
-                                    Toast.makeText(this@RegisterActivity, "无网络连接", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this@RegisterActivity, "网络开小差了，请稍后", Toast.LENGTH_SHORT).show()
                                     loading.visibility = View.GONE
                                     return@Observer
                                 }
@@ -127,7 +127,7 @@ class RegisterActivity : AppCompatActivity() {
                 registerViewModel.registerRequest(username.text.toString(),password.text.toString(),email.text.toString(),verify_code.text.toString())
                     .observe(this@RegisterActivity, Observer{
                         if (it == null){
-                            Toast.makeText(this@RegisterActivity, "无网络连接", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@RegisterActivity, "网络开小差了，请稍后", Toast.LENGTH_SHORT).show()
                             loading.visibility = View.GONE
                             return@Observer
                         }

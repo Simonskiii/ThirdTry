@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.thirdtry">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,19 +13,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyTheme.DayNight">
-        <activity android:name=".ui.activity.register.RegisterActivity"></activity>
-        <activity android:name=".ui.activity.login.LoginActivity">
+        <activity android:name=".ui.activity.initialize.InitializeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.register.RegisterActivity" />
+        <activity android:name=".ui.activity.login.LoginActivity"></activity>
         <activity
             android:name=".ui.activity.searchActivity.SearchActivity"
             android:label="@string/title_activity_search"
             android:theme="@style/MyTheme.DayNight.NoActionBar" />
-        <activity android:name=".ui.activity.main.MainActivity"></activity>
+        <activity android:name=".ui.activity.main.MainActivity" />
     </application>
 
 </manifest>
