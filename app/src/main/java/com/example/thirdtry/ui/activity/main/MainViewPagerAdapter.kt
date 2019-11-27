@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.example.thirdtry.R
 import com.example.thirdtry.ui.fragment.article.ArticleFragment
+import com.example.thirdtry.ui.fragment.good.GoodFragment
 import com.example.thirdtry.ui.fragment.scheme.SchemeFragment
 import com.example.thirdtry.ui.fragment.user.UserFragment
 
@@ -40,7 +41,7 @@ class MainViewPagerAdapter(
     override fun getItem(position: Int): Fragment {
         return when (getItemType(position)) {
             MainFragments.SCHEMES -> SchemeFragment()
-            MainFragments.ARTICLES -> ArticleFragment()
+            MainFragments.ARTICLES -> GoodFragment()
             MainFragments.USERS -> UserFragment()
         }
     }

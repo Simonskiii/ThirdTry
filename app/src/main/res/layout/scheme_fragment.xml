@@ -1,13 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.scheme.SchemeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <data>
+        <variable
+            name="data"
+            type="com.example.thirdtry.model.Todo" />
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello scheme" />
+        android:orientation="vertical"
+        tools:context=".ui.fragment.scheme.SchemeFragment"
+        android:background="@color/color_translucent">
 
-</FrameLayout>
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/keyline_4"
+                android:layout_marginEnd="@dimen/keyline_4">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    >
+                    <!--                    <androidx.appcompat.widget.AppCompatImageView-->
+                    <!--                        android:id="@+id/iv"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_gravity="center_vertical"-->
+                    <!--                        app:srcCompat="@drawable/ic_material_icon_24dp"-->
+                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                        app:layout_constraintTop_toTopOf="parent"-->
+                    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+                    <!--                        />-->
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/keyline_2"
+                        android:layout_marginEnd="@dimen/keyline_4"
+                        android:gravity="center_vertical"
+                        android:text="首  页"
+                        android:textAppearance="?textAppearanceHeadline6"
+                        android:alpha="?alphaEmphasisHigh"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/roboto_black_italic"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                    <ImageView
+                        android:id="@+id/iv_search"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="5dp"
+                        android:src="@mipmap/ic_action_search_black"
+                        tools:targetApi="lollipop"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_scheme_view"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginLeft="15.4dp"
+            android:layout_marginRight="15.4dp"
+            android:layout_marginBottom="20dp">
+            <!--                    tools:src="@drawable/mushroom_macro_closeup_151300_1440x2560" -->
+            <!--            <ImageView-->
+            <!--                android:id="@+id/liked"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:layout_marginTop="2dp"-->
+            <!--                android:layout_marginStart="5dp"-->
+            <!--                android:paddingLeft="3dp"-->
+            <!--                android:paddingTop="3dp"-->
+            <!--                android:paddingRight="3dp"-->
+            <!--                android:paddingBottom="3dp"-->
+            <!--                android:src="@drawable/ic_favorite_black_24dp"-->
+            <!--                android:tint="@color/white" />-->
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/not_like"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:layout_marginTop="2dp"-->
+            <!--                android:layout_marginStart="5dp"-->
+            <!--                android:paddingLeft="3dp"-->
+            <!--                android:paddingTop="3dp"-->
+            <!--                android:paddingRight="3dp"-->
+            <!--                android:paddingBottom="3dp"-->
+            <!--                android:src="@drawable/ic_favorite_border_black_24dp"-->
+            <!--                android:tint="@color/white" />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/tv_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:layout_marginTop="15dp"
+                    android:text="@{data.type(data.typ)}"
+                    android:textColor="?colorOnSurface"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="My name" />
+
+                <TextView
+                    android:id="@+id/tv_reason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@{data.content}"
+                    android:textColor="@color/color_darker_gray"
+                    android:textSize="12sp"
+                    tools:text="My name"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_above="@id/tips_tv"
+            android:background="@color/color_darker_gray" />
+        <TextView
+            android:id="@+id/tips_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_scheme_view"
+            android:layout_marginLeft="15.4dp"
+            android:layout_marginRight="15.4dp"
+            android:letterSpacing="0.03"
+            android:lineSpacingExtra="2.6sp"
+            android:layout_marginTop="20dp"
+            android:text="日常方案"
+            android:textColor="#fefeff"
+            android:textSize="20sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tips_rv"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_below="@+id/tips_tv"
+            android:layout_marginTop="20dp"
+            android:foregroundGravity="center"
+            android:scrollbars="none" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/color_darker_gray"
+            android:layout_above="@+id/tv_popular_places"/>
+        <TextView
+            android:id="@+id/tv_popular_places"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/commodity_rv"
+            android:layout_marginLeft="15.4dp"
+            android:layout_marginRight="15.4dp"
+            android:layout_marginBottom="10dp"
+            android:letterSpacing="0.03"
+            android:lineSpacingExtra="2.6sp"
+            android:layout_marginTop="10dp"
+            android:text="食补方案"
+            android:textColor="#fefeff"
+            android:textSize="20sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/commodity_rv"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:foregroundGravity="center"
+            android:scrollbars="none" />
+    </RelativeLayout>
+</layout>

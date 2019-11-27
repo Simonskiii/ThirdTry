@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.thirdtry.model.Good" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/man_silhouette_beach_151309_1440x2560"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:rotation="180"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_gradient" />
+
+        <LinearLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_close_black_24dp"
+                android:tint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:lineSpacingExtra="3.7sp"
+                android:text="高等数学"
+                android:textColor="#ffffff"
+                android:textSize="17.3sp" />
+            <RatingBar
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15.4dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:numStars="5"
+                android:rating="4.5"
+                android:progressTint="@color/color_darker_gray"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_author_view"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="15.4dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="15.4dp"
+            android:layout_marginBottom="50dp"
+            android:layout_below="@+id/toolbar">
+
+            <com.example.thirdtry.view.CircleImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_margin="15dp" />
+            <!--                    tools:src="@drawable/mushroom_macro_closeup_151300_1440x2560" -->
+            <!--            <ImageView-->
+            <!--                android:id="@+id/liked"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:layout_marginTop="2dp"-->
+            <!--                android:layout_marginStart="5dp"-->
+            <!--                android:paddingLeft="3dp"-->
+            <!--                android:paddingTop="3dp"-->
+            <!--                android:paddingRight="3dp"-->
+            <!--                android:paddingBottom="3dp"-->
+            <!--                android:src="@drawable/ic_favorite_black_24dp"-->
+            <!--                android:tint="@color/white" />-->
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/not_like"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:layout_marginTop="2dp"-->
+            <!--                android:layout_marginStart="5dp"-->
+            <!--                android:paddingLeft="3dp"-->
+            <!--                android:paddingTop="3dp"-->
+            <!--                android:paddingRight="3dp"-->
+            <!--                android:paddingBottom="3dp"-->
+            <!--                android:src="@drawable/ic_favorite_border_black_24dp"-->
+            <!--                android:tint="@color/white" />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/tv_attention"
+                android:layout_toEndOf="@+id/iv_avatar"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/tv_author_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="@{data.name}"
+                    android:textColor="@color/color_darker_gray"
+                    android:textSize="14sp"
+                    tools:text="My name" />
+
+                <TextView
+                    android:id="@+id/tv_author_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@{Double.toString(data.market_price)}"
+                    android:textColor="@color/color_darker_gray"
+                    android:textSize="12sp"
+                    tools:text="这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍"/>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/tv_attention"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+
+                android:paddingLeft="7dp"
+                android:paddingTop="3dp"
+                android:paddingRight="7dp"
+                android:paddingBottom="3dp"
+                android:src="@drawable/ic_favorite_border_black_24dp"
+                android:tint="@color/white" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_darker_gray" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/comments_rv"
+            android:layout_marginLeft="15.4dp"
+            android:layout_marginRight="15.4dp"
+            android:layout_marginBottom="10dp"
+            android:letterSpacing="0.03"
+            android:lineSpacingExtra="2.6sp"
+            android:text="Comments"
+            android:textColor="#fefeff"
+            android:textSize="13.4sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/comments_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_above="@+id/tv_popular_places"
+            android:scrollbars="none"/>
+
+
+        <TextView
+            android:id="@+id/tv_popular_places"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/commodity_rv"
+            android:layout_marginLeft="15.4dp"
+            android:layout_marginRight="15.4dp"
+            android:layout_marginBottom="10dp"
+            android:letterSpacing="0.03"
+            android:lineSpacingExtra="2.6sp"
+            android:text="Commodity"
+            android:textColor="#fefeff"
+            android:textSize="13.4sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/commodity_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:scrollbars="none"/>
+    </RelativeLayout>
+</layout>

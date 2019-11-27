@@ -11,9 +11,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
+    protected lateinit var token :String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         b_view.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.bottom_nav_scheme -> {
@@ -42,10 +45,11 @@ class MainActivity : AppCompatActivity() {
         })
 
         val adapter = MainViewPagerAdapter(this, supportFragmentManager)
+        view_pager.offscreenPageLimit = 3
         view_pager.adapter = adapter
 
 
-        iv_search.setOnClickListener { openSearchActivity() }
+//        iv_search.setOnClickListener { openSearchActivity() }
     }
     private fun openSearchActivity() {
             startActivity(Intent(this, SearchActivity::class.java))

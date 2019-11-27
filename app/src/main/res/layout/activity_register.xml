@@ -29,7 +29,8 @@
             android:layout_height="match_parent"
             android:inputType="text"
             android:selectAllOnFocus="true"
-            android:background="#0000"/>
+            android:background="#0000"
+            android:textColor="#000000"/>
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -53,6 +54,7 @@
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:selectAllOnFocus="true"
+            android:textColor="#000000"
             android:background="#0000"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -74,6 +76,7 @@
             android:imeOptions="actionDone"
             android:inputType="textEmailAddress"
             android:selectAllOnFocus="true"
+            android:textColor="#000000"
             android:background="#0000"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -111,7 +114,8 @@
             android:imeOptions="actionDone"
             android:inputType="text"
             android:selectAllOnFocus="true"
-            android:background="#0000"/>
+            android:background="#0000"
+            android:textColor="#000000"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton

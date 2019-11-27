@@ -1,5 +1,6 @@
 package com.example.thirdtry.base
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -18,10 +19,13 @@ import pub.devrel.easypermissions.EasyPermissions
 
 abstract class BaseFragment: Fragment(),EasyPermissions.PermissionCallbacks{
     private var isFirstLoad = true // 是否第一次加载
+    protected lateinit var token :String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val s = activity?.getSharedPreferences("loginToken", 0)
+        token = s?.getString("token", "").toString()
         return inflater.inflate(getLayoutId(), container, false)
     }
 
@@ -103,4 +107,5 @@ abstract class BaseFragment: Fragment(),EasyPermissions.PermissionCallbacks{
                     .show()
         }
     }
+
 }

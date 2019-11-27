@@ -21,7 +21,7 @@ class ArticleFragment : BaseFragment() {
     private val adapter: ArticleBindingAdapter by lazy {
         ArticleBindingAdapter(articles)
     }
-    protected val mObserver: Observer<BaseDataResult<MutableList<Article>>> by lazy {
+    private val mObserver: Observer<BaseDataResult<MutableList<Article>>> by lazy {
         Observer<BaseDataResult<MutableList<Article>>> {
             if (it == null){
                 Toast.makeText(activity, "无网络连接", Toast.LENGTH_SHORT).show()
@@ -34,7 +34,9 @@ class ArticleFragment : BaseFragment() {
                     spin_kit.visibility = View.GONE
                 }
                 else{
-                    adapter.setNewData(articles)
+                    this.articles.clear()
+                    this.articles.addAll(it.subjects)
+                    adapter.notifyDataSetChanged()
                 }
             }
         }
@@ -52,7 +54,6 @@ class ArticleFragment : BaseFragment() {
         line_recy_view.layoutManager = LinearLayoutManager(this.context)
         line_recy_view.adapter = adapter
         SRL.setOnRefreshListener {
-            var result = viewModel.getArticles()
             viewModel.getArticles().observe(this, mObserver)
             //下拉刷新图标持续时间
             Handler().postDelayed({

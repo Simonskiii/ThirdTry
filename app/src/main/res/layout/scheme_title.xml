@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_gravity="top"
+        android:background="@color/color_darker_gray" />
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15.4dp"
+        android:layout_marginRight="15.4dp"
+        android:letterSpacing="0.03"
+        android:lineSpacingExtra="2.6sp"
+        android:layout_marginTop="20dp"
+        android:text="日常方案"
+        android:textColor="#fefeff"
+        android:textSize="20sp" />
+</LinearLayout>

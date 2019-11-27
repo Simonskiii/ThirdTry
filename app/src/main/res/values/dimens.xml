@@ -35,4 +35,23 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="dividerHeight">3dp</dimen>
+
+    <dimen name="x_half">4dp</dimen>
+    <dimen name="x">8dp</dimen>
+    <dimen name="xx">16dp</dimen>
+    <dimen name="xxx">24dp</dimen>
+    <dimen name="xxxx">32dp</dimen>
+
+    <dimen name="y_half">4dp</dimen>
+    <dimen name="y">8dp</dimen>
+    <dimen name="yy">16dp</dimen>
+    <dimen name="yyy">24dp</dimen>
+    <dimen name="yyyy">32dp</dimen>
+
+    <dimen name="textSize_small_10">10sp</dimen>
+    <dimen name="textSize_small">12sp</dimen>
+    <dimen name="textSize_content">14sp</dimen>
+    <dimen name="textSize_titleSmall">16sp</dimen>
+    <dimen name="textSize_title">18sp</dimen>
+
 </resources>

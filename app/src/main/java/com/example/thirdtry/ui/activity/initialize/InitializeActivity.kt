@@ -1,6 +1,7 @@
 package com.example.thirdtry.ui.activity.initialize
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,7 +24,7 @@ class InitializeActivity : AppCompatActivity() {
         initializeViewModel = ViewModelProviders.of(this, InitializeViewModelFactory())
             .get(InitializeViewModel::class.java)
         loading.visibility = View.VISIBLE
-        val s = getSharedPreferences("loginToken", 0)
+        val s = getSharedPreferences("loginToken", Context.MODE_PRIVATE)
         val token = s.getString("token", "")
         //从来没登录过或token过期
         if(token?.length==0){

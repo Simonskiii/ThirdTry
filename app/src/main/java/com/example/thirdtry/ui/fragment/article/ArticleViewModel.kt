@@ -7,9 +7,6 @@ import com.example.thirdtry.base.BaseDataResult
 import com.example.thirdtry.model.Article
 
 class ArticleViewModel : ViewModel() {
-    fun getInTheaters(): MutableLiveData<BaseDataResult<MutableList<Article>>> =
-        RetrofitClient.serviceApi.getJoke(1,10,"video")
     fun getArticles(): MutableLiveData<BaseDataResult<MutableList<Article>>> =
         RetrofitClient.serviceApi.getArticles()
-    val data : MutableLiveData<BaseDataResult<MutableList<Article>>> = MutableLiveData()
 }

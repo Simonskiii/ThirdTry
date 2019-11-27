@@ -5,10 +5,13 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin">
+    android:background="@drawable/mushroom_macro_closeup_151300_1440x2560">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:rotation="180"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_gradient"/>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/user_layout"
         android:layout_width="0dp"
@@ -26,7 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textEmailAddress"
-            android:selectAllOnFocus="true" />
+            android:selectAllOnFocus="true"
+            android:textColor="#000000"/>
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -48,7 +52,8 @@
             android:layout_height="match_parent"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
-            android:selectAllOnFocus="true" />
+            android:selectAllOnFocus="true"
+            android:textColor="#000000"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton

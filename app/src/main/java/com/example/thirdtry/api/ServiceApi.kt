@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import com.example.thirdtry.base.BaseDataResult
 import com.example.thirdtry.base.BaseResult
 import com.example.thirdtry.model.Article
+import com.example.thirdtry.model.Good
+import com.example.thirdtry.model.Scheme
 import com.example.thirdtry.ui.activity.login.LoginModel
 import retrofit2.http.*
 
@@ -23,8 +25,20 @@ interface ServiceApi {
         @Query("type") type: String
     ): MutableLiveData<BaseDataResult<MutableList<Article>>>
 
-    @GET("g/articles")
+    @GET("g/articles/")
     fun getArticles(): MutableLiveData<BaseDataResult<MutableList<Article>>>
+
+    @GET("g/goods/")
+    fun getGoods(@Header("Authorization") Authorization: String): MutableLiveData<BaseDataResult<MutableList<Good>>>
+
+    @GET("g/goods/{id}")
+    fun getGoodDetail(@Header("Authorization") Authorization: String, @Path("id") Id: String)
+            : MutableLiveData<Good>
+
+    @GET("g/scheme/")
+    fun getScheme(@Header("Authorization") Authorization: String)
+            : MutableLiveData<BaseDataResult<Scheme>>
+
 
     @POST("jwt-token-auth/")
     @FormUrlEncoded
@@ -40,9 +54,13 @@ interface ServiceApi {
     @FormUrlEncoded
     fun verify(@Field("email") email: String):
             MutableLiveData<BaseResult>
+
     @POST("/g/user/")
     @FormUrlEncoded
-    fun register(@Field("name") name: String,@Field("password") password: String,
-                 @Field("email") email: String,@Field("code") code: String):
-            MutableLiveData<BaseResult>
+    fun register(
+        @Field("name") name: String, @Field("password") password: String,
+        @Field("email") email: String, @Field("code") code: String
+    ): MutableLiveData<BaseResult>
+
+
 }

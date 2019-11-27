@@ -15,14 +15,14 @@ abstract class BaseBindingAdapter<T, B : ViewDataBinding>(var items: MutableList
 
     override fun getItemCount() = items.size
 
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
     }
 
-    fun setNewData(newItems: List<T>) {
-        items.clear()
-        items.addAll(newItems)
-    }
 
     inner class ViewHolder(private val binding: B) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: T) {

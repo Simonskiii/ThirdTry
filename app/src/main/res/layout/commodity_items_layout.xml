@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.thirdtry.model.Commodity" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin = "5dp"
+        android:elevation="0dp"
+        app:cardCornerRadius="9dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/color_gray_translucent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <com.rishabhharit.roundedimageview.RoundedImageView
+                app:cornerRadius="8dp"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_margin="15.4dp"
+                android:scaleType="centerCrop"
+                android:background="@drawable/shape_radius"
+                bind:imageUrl="@{data.goods_front_image}" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16.2sp"
+                android:lineSpacingExtra="2.8sp"
+                android:text="@{data.name}"
+                android:layout_gravity="center" />
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.thirdtry.model.Good" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_movie"
+                android:layout_width="96dp"
+                android:layout_height="match_parent"
+                android:background="@color/design_default_color_background"
+                android:scaleType="fitXY"
+                bind:imageUrl="@{data.goods_front_image}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/x"
+                android:paddingEnd="96dp"
+                app:layout_constraintLeft_toRightOf="@+id/iv_movie"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.name}"
+                    android:textSize="18dp"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/genres"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="2dp"
+                    android:text="@{data.goods_brief}"
+                    android:ellipsize="end"  />
+            </LinearLayout>
+
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/pubdates"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:maxLines="1"-->
+<!--                android:paddingStart="@dimen/x"-->
+<!--                android:paddingTop="2dp"-->
+<!--                android:text="@{data.goods_brief}"-->
+<!--                app:layout_constraintLeft_toRightOf="@+id/iv_movie"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/genres" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/durations"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingStart="@dimen/x"-->
+<!--                android:paddingTop="2dp"-->
+<!--                android:paddingBottom="@dimen/y"-->
+<!--                android:text="片长：132分钟"-->
+<!--                app:layout_constraintLeft_toRightOf="@+id/iv_movie"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/pubdates" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
