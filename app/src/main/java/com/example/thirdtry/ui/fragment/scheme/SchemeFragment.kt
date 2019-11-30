@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -21,9 +22,10 @@ import com.example.thirdtry.model.Tip
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.scheme_fragment.*
 import kotlinx.android.synthetic.main.scheme_fragment_new.*
+import java.util.stream.IntStream
 
 class SchemeFragment : BaseFragment() {
-    private lateinit var viewModel: SchemeViewModel
+    lateinit var viewModel: SchemeViewModel
     private lateinit var binding : SchemeFragmentNewBinding
     private val mObserver: Observer<BaseDataResult<Scheme>> by lazy {
         Observer<BaseDataResult<Scheme>> {
@@ -32,15 +34,31 @@ class SchemeFragment : BaseFragment() {
                 return@Observer
             }
             else{
-                binding.data = it.subjects.todo[0]
+
+                val stringBuffer = StringBuffer()
+                val length = it.subjects.todo.size
+                for(i in 0 until length){
+                    when (it.subjects.todo[i].typ){
+                        "sqz" -> stringBuffer.append("湿气重: ")
+                        "poor_sleep" -> stringBuffer.append("睡眠质量差: ")
+                        "low_dkl" -> stringBuffer.append("抵抗力低下: ")
+                        "little_hair" -> stringBuffer.append("脱发: ")
+                    }
+                    stringBuffer.append(it.subjects.todo[i].content)
+                    if (i!= length -1 ){
+                        stringBuffer.append("\n")
+                    }
+                }
+                binding.data = stringBuffer
             }
         }
     }
-    override fun getLayoutId(): Int = R.layout.scheme_fragment
+    override fun getLayoutId(): Int = R.layout.scheme_fragment_new
 
 
     companion object {
         fun newInstance() = SchemeFragment()
+        var instance : SchemeFragment? = null
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,6 +70,7 @@ class SchemeFragment : BaseFragment() {
         return binding.root
     }
     override fun initView() {
+        instance = this
         tab_layout.setupWithViewPager(sub_view_pager)
         val adapter = SchemeViewPagerAdapter(context!!, this.childFragmentManager)
         sub_view_pager.offscreenPageLimit = 2
@@ -60,6 +79,9 @@ class SchemeFragment : BaseFragment() {
 
     override fun initViewModel() {
         viewModel = ViewModelProviders.of(this.activity!!).get(SchemeViewModel::class.java)
+        viewModel.getScheme(token).observe(this, mObserver)
+    }
+    fun getData() {
         viewModel.scheme = viewModel.getScheme(token)
         viewModel.scheme?.observe(this, mObserver)
     }

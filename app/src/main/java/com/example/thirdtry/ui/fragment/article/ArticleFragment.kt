@@ -46,7 +46,7 @@ class ArticleFragment : BaseFragment() {
 
     override fun initViewModel() {
         viewModel = ViewModelProviders.of(this.activity!!).get(ArticleViewModel::class.java)
-        viewModel.getArticles().observe(this, mObserver)
+        viewModel.getArticles(token).observe(this, mObserver)
     }
 
     override fun initView() {
@@ -54,7 +54,7 @@ class ArticleFragment : BaseFragment() {
         line_recy_view.layoutManager = LinearLayoutManager(this.context)
         line_recy_view.adapter = adapter
         SRL.setOnRefreshListener {
-            viewModel.getArticles().observe(this, mObserver)
+            viewModel.getArticles(token).observe(this, mObserver)
             //下拉刷新图标持续时间
             Handler().postDelayed({
                 if (SRL.isRefreshing) {

@@ -6,5 +6,7 @@ data class LoginModel(
     @SerializedName("token")
     val token: String? = null,
     @SerializedName("name")
-    val name: String? = null
+    val name: String? = null,
+    @SerializedName("id")
+    val id: String? = null
 )

@@ -7,6 +7,6 @@ import com.example.thirdtry.base.BaseDataResult
 import com.example.thirdtry.model.Article
 
 class ArticleViewModel : ViewModel() {
-    fun getArticles(): MutableLiveData<BaseDataResult<MutableList<Article>>> =
-        RetrofitClient.serviceApi.getArticles()
+    fun getArticles(token:String): MutableLiveData<BaseDataResult<MutableList<Article>>> =
+        RetrofitClient.serviceApi.getArticles("JWT $token")
 }

@@ -61,7 +61,7 @@ class RegisterViewModel : ViewModel() {
     }
 
     private fun isUserNameValid(username: String): Boolean {
-        return username.length < 20
+        return username.length < 13
     }
 
     // A placeholder password validation check
@@ -70,7 +70,7 @@ class RegisterViewModel : ViewModel() {
     }
 
     private fun isCodeValid(code: String): Boolean {
-        return code.length > 5
+        return code.length <= 6
     }
 
     fun getVerifyResult(response: BaseResult) {

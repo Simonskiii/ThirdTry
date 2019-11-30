@@ -6,24 +6,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import com.example.thirdtry.R
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.EditText
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
+import com.example.thirdtry.ui.activity.firstPage.FirstPageActivity
 import com.example.thirdtry.ui.activity.main.MainActivity
 import com.example.thirdtry.ui.activity.register.RegisterActivity
-import com.example.thirdtry.utils.NetworkUtils
 import com.example.thirdtry.utils.afterTextChanged
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.loading
 import kotlinx.android.synthetic.main.activity_login.password
-import kotlinx.android.synthetic.main.activity_login.register
 import kotlinx.android.synthetic.main.activity_login.username
-import kotlinx.android.synthetic.main.activity_register.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -48,10 +42,6 @@ class LoginActivity : AppCompatActivity() {
                 password.error = getString(loginState.passwordError)
             }
         })
-        register.setOnClickListener {
-            intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-        }
         //username输入时，实时将值传入，以检测是否规范
         username.afterTextChanged {
             loginViewModel.loginDataChanged(
@@ -77,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
                             password.text.toString()
                         )
                             .observe(this@LoginActivity, Observer {
-                                if (it == null) {
+                                if (it == null) {//因为服务器问题，没有返回值
                                     Toast.makeText(this@LoginActivity, "网络开小差了，请稍后", Toast.LENGTH_SHORT)
                                         .show()
                                     loading.visibility = View.GONE
@@ -95,7 +85,7 @@ class LoginActivity : AppCompatActivity() {
                 //发出post请求并对response进行观察
                 loginViewModel.loginRequest(username.text.toString(), password.text.toString())
                     .observe(this@LoginActivity, Observer {
-                        if (it == null) {
+                        if (it == null) {//因为服务器问题，没有返回值
                             Toast.makeText(this@LoginActivity, "网络开小差了，请稍后", Toast.LENGTH_LONG).show()
                             loading.visibility = View.GONE
                             return@Observer
@@ -120,7 +110,11 @@ class LoginActivity : AppCompatActivity() {
                     editor.putString("name", it1)
                 }
                 editor.putString("token", loginResult.success.token)
+                editor.putString("id", loginResult.success.id)
                 editor.apply()
+                if (FirstPageActivity.instance != null){
+                    FirstPageActivity.instance.finish()
+                }
                 finish()
             }
             setResult(Activity.RESULT_OK)

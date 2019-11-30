@@ -54,7 +54,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/tv_collection"
+                    android:id="@+id/tv_fav"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:drawableStart="@drawable/ic_bookmark_white_24dp"
@@ -105,17 +105,19 @@
 
 
                 <TextView
-                    android:id="@+id/tv_change_profile"
+                    android:id="@+id/tv_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
+                    android:layout_gravity="center"
                     android:gravity="center|center_horizontal"
-                    android:text="修改信息"
+                    android:text="个人信息"
                     android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_read_history"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
+                    android:layout_gravity="center"
                     android:gravity="center|center_horizontal"
                     android:text="阅读历史"
                     android:textSize="14sp" />
@@ -124,6 +126,7 @@
                     android:id="@+id/tv_feedback"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
+                    android:layout_gravity="center"
                     android:gravity="center|center_horizontal"
                     android:text="意见反馈"
                     android:textSize="14sp" />
@@ -132,6 +135,7 @@
                     android:id="@+id/tv_logout"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
+                    android:layout_gravity="center"
                     android:gravity="center|center_horizontal"
                     android:text="注销"
                     android:textSize="14sp" />

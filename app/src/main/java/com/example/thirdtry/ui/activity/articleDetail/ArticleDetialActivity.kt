@@ -21,28 +21,29 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thirdtry.base.BaseDataResult
 import com.example.thirdtry.model.Good
 import com.example.thirdtry.databinding.ActivityArticleDetialBinding
+import com.example.thirdtry.model.Article
 import com.example.thirdtry.ui.fragment.good.GoodBindingAdapter
 import kotlinx.android.synthetic.main.activity_article_detial.*
 import kotlinx.android.synthetic.main.good_fragment.*
 
 
 class ArticleDetialActivity : AppCompatActivity() {
+    companion object {
+        lateinit var instance: ArticleDetialActivity
+    }
+
     private var id: String? = null
     private lateinit var viewModel: ArticleDetialViewModel
     private lateinit var token: String
     private lateinit var binding: ActivityArticleDetialBinding
-    private var comments = mutableListOf<Good>()
-    private val adapter: GoodBindingAdapter by lazy {
-        GoodBindingAdapter(comments)
-    }
 
-    private val mObserver: Observer<Good> by lazy {
-        Observer<Good> {
+    private val mObserver: Observer<Article> by lazy {
+        Observer<Article> {
             if (it == null) {
-                Toast.makeText(this, "无网络连接", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "网络开小差了，请稍后", Toast.LENGTH_SHORT).show()
                 return@Observer
             } else {
-                val a = it.goods_front_image
+                val a = it.id
                 binding.data = it
             }
         }
@@ -60,11 +61,10 @@ class ArticleDetialActivity : AppCompatActivity() {
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     fun onMessageEvent(event: String) {
-//        tv.text = event
         this.id = event
         viewModel = ViewModelProviders.of(this).get(ArticleDetialViewModel::class.java)
         val s = getSharedPreferences("loginToken", Context.MODE_PRIVATE)
         token = s.getString("token", "")!!
-        viewModel.getGoodDetail(token, this.id!!).observe(this, mObserver)
+        viewModel.getArticleDetail(token, this.id!!).observe(this, mObserver)
     }
 }

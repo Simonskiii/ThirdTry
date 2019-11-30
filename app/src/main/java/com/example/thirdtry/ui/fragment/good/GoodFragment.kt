@@ -15,9 +15,7 @@ class GoodFragment : BaseFragment() {
         sub_view_pager.adapter = adapter
     }
 
-    override fun initViewModel() {
-
-    }
+    override fun initViewModel() {}
 
 
 }

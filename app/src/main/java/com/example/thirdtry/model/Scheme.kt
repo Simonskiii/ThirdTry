@@ -25,13 +25,17 @@ class Todo(
     var typ: String
 ) {
     fun type(typ: String): String {
-        return when (typ) {
-            "sqz" -> "经过后台分析，您的症状是湿气重"
-            "little_hair" -> "经过后台分析，您的症状是脱发"
-            "poor_sleep" -> "经过后台分析，您的症状是睡眠质量差"
-            "low_dkl" -> "经过后台分析，您的症状是免疫力低下"
-
-            else -> "经过后台分析，您的症状我也不知道"
+        val list = typ.split(" ")
+        val stringBuffer = StringBuffer()
+        stringBuffer.append("经过后台分析，您的症状为：")
+        for(i in list){
+            when (i){
+                "sqz" -> stringBuffer.append("湿气重" + " ")
+                "poor_sleep" -> stringBuffer.append("睡眠质量差" + " ")
+                "low_dkl" -> stringBuffer.append("抵抗力低下" + " ")
+                "little_hair" -> stringBuffer.append("脱发" + " ")
+            }
         }
+        return stringBuffer.toString().trim()
     }
 }

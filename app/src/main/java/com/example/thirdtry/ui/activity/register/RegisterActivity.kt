@@ -20,9 +20,13 @@ import kotlinx.android.synthetic.main.activity_register.register
 import kotlinx.android.synthetic.main.activity_register.username
 
 class RegisterActivity : AppCompatActivity() {
+    companion object {
+        var instance: RegisterActivity? = null
+    }
     private lateinit var registerViewModel: RegisterViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        instance = this
         setContentView(R.layout.activity_register)
         registerViewModel = ViewModelProviders.of(this, RegisterViewModelFactory())
             .get(RegisterViewModel::class.java)
@@ -159,6 +163,7 @@ class RegisterActivity : AppCompatActivity() {
                 registerSuccessfully()
                 intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                finish()
             }
             setResult(Activity.RESULT_OK)
             //Complete and destroy login activity once successful

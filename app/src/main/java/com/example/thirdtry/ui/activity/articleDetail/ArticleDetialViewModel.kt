@@ -8,6 +8,6 @@ import com.example.thirdtry.model.Article
 import com.example.thirdtry.model.Good
 
 class ArticleDetialViewModel: ViewModel() {
-    fun getGoodDetail(token: String, id: String): MutableLiveData<Good> =
-        RetrofitClient.serviceApi.getGoodDetail("JWT $token", id)
+    fun getArticleDetail(token: String, id: String): MutableLiveData<Article> =
+        RetrofitClient.serviceApi.getArticleDetail("JWT $token", id)
 }

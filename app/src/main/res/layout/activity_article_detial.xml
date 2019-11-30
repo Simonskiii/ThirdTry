@@ -6,7 +6,7 @@
     <data>
         <variable
             name="data"
-            type="com.example.thirdtry.model.Good" />
+            type="com.example.thirdtry.model.Article" />
     </data>
 
     <RelativeLayout
@@ -26,7 +26,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -131,7 +131,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="@{Double.toString(data.market_price)}"
+                    android:text="@{data.name}"
                     android:textColor="@color/color_darker_gray"
                     android:textSize="12sp"
                     tools:text="这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍这是介绍"/>

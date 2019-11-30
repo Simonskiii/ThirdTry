@@ -41,7 +41,7 @@ class MainViewPagerAdapter(
     override fun getItem(position: Int): Fragment {
         return when (getItemType(position)) {
             MainFragments.SCHEMES -> SchemeFragment()
-            MainFragments.ARTICLES -> GoodFragment()
+            MainFragments.ARTICLES -> ArticleFragment()
             MainFragments.USERS -> UserFragment()
         }
     }

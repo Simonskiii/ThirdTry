@@ -1,5 +1,7 @@
 package com.example.thirdtry.ui.fragment.scheme.subFragment
 
+import android.os.Handler
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -30,8 +32,16 @@ class CommoditiesFragment: BaseFragment() {
                 return@Observer
             }
             else{
-                this.commodities.addAll(it.subjects.commodities)
-                commodityAdapter.notifyDataSetChanged()
+                if (commodities.isEmpty()) {
+                    this.commodities.addAll(it.subjects.commodities)
+                    commodityAdapter.notifyDataSetChanged()
+                }
+                else{
+                    this.commodities.clear()
+                    this.commodities.addAll(it.subjects.commodities)
+                    commodityAdapter.notifyDataSetChanged()
+                }
+
             }
         }
     }
@@ -39,19 +49,20 @@ class CommoditiesFragment: BaseFragment() {
     override fun initView() {
         line_recy_view.layoutManager = GridLayoutManager(this.context,2)
         line_recy_view.adapter = commodityAdapter
+        SRL.setOnRefreshListener {
+            viewModel.getScheme(token).observe(this, mObserver)
+            //下拉刷新图标持续时间
+            Handler().postDelayed({
+                if (SRL.isRefreshing) {
+                    SRL.isRefreshing = false
+                }
+            }, 750)
+        }
     }
 
     override fun initViewModel() {
         viewModel = ViewModelProviders.of(this.activity!!).get(SchemeViewModel::class.java)
-        if (viewModel.scheme != null){
-            if (viewModel.scheme!!.value == null){
-                viewModel.scheme!!.observe(this,mObserver)
-            }
-            else {
-                this.commodities.addAll(viewModel.scheme?.value!!.subjects.commodities)
-                commodityAdapter.notifyDataSetChanged()
-            }
-        }
+        viewModel.getScheme(token).observe(this, mObserver)
     }
 
 }

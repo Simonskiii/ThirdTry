@@ -13,7 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyTheme.DayNight">
-        <activity android:name=".ui.activity.articleDetail.ArticleDetialActivity"></activity>
+        <activity android:name=".ui.activity.record.RecordActivity"></activity>
+        <activity android:name=".ui.activity.getInformation.GetInformationActivity" />
+        <activity android:name=".ui.activity.editInformation.EditInformationActivity" />
+        <activity android:name=".ui.activity.firstPage.FirstPageActivity" />
+        <activity android:name=".ui.activity.articleDetail.ArticleDetialActivity" />
         <activity android:name=".ui.activity.initialize.InitializeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

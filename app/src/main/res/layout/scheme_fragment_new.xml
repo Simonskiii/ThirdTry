@@ -6,7 +6,7 @@
     <data>
         <variable
             name="data"
-            type="com.example.thirdtry.model.Todo" />
+            type="StringBuffer" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -55,26 +55,27 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/keyline_2"
                             android:layout_marginRight="@dimen/keyline_4"
-                            android:text="@{data.type(data.typ)}"
+                            android:text="经过后台分析，您的症状为："
+                            android:layout_marginTop="10dp"
                             tools:text="My name"
                             android:textAppearance="?textAppearanceHeadline6"
                             android:alpha="?alphaEmphasisHigh"
                             android:textStyle="bold"
                             app:fontFamily="@font/roboto_black_italic"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent" />
+                            <TextView
+                                android:id="@+id/expandable_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="@{data.toString()}"
+                                android:textColor="@color/color_darker_gray"
+                                app:layout_constraintTop_toBottomOf="@id/tv_desc"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:textSize="12sp"
+                                tools:text="My name" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="@{data.content}"
-                            android:textColor="@color/color_darker_gray"
-                            android:textSize="12sp"
-                            tools:text="My name"
-                            app:layout_constraintTop_toBottomOf="@id/tv_desc"
-                            app:layout_constraintStart_toStartOf="parent"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
             </com.google.android.material.appbar.CollapsingToolbarLayout>

@@ -3,6 +3,7 @@ package com.example.thirdtry.ui.fragment.scheme.subFragment
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 
 import android.view.LayoutInflater
 import android.view.View
@@ -35,8 +36,15 @@ class TipsFragment : BaseFragment() {
                 return@Observer
             }
             else{
-                this.tips.addAll(it.subjects.tips)
-                tipAdapter.notifyDataSetChanged()
+                if (tips.isEmpty()) {
+                    this.tips.addAll(it.subjects.tips)
+                    tipAdapter.notifyDataSetChanged()
+                }
+                else{
+                    this.tips.clear()
+                    this.tips.addAll(it.subjects.tips)
+                    tipAdapter.notifyDataSetChanged()
+                }
             }
         }
     }
@@ -44,19 +52,20 @@ class TipsFragment : BaseFragment() {
     override fun initView() {
         line_recy_view.layoutManager = LinearLayoutManager(this.context)
         line_recy_view.adapter = tipAdapter
+        SRL.setOnRefreshListener {
+            viewModel.getScheme(token).observe(this, mObserver)
+            //下拉刷新图标持续时间
+            Handler().postDelayed({
+                if (SRL.isRefreshing) {
+                    SRL.isRefreshing = false
+                }
+            }, 750)
+        }
     }
 
     override fun initViewModel() {
         viewModel = ViewModelProviders.of(this.activity!!).get(SchemeViewModel::class.java)
-        if (viewModel.scheme != null){
-            if (viewModel.scheme!!.value == null){
-                viewModel.scheme!!.observe(this,mObserver)
-            }
-            else {
-                this.tips.addAll(viewModel.scheme?.value!!.subjects.tips)
-                tipAdapter.notifyDataSetChanged()
-            }
-        }
+        viewModel.getScheme(token).observe(this, mObserver)
     }
 
 }
