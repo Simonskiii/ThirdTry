@@ -35,7 +35,7 @@ class RecordActivity : AppCompatActivity() {
                 return@Observer
             } else {
                 val a = it.id
-                binding.data = it
+//                binding.data = it
             }
         }
     }
@@ -46,8 +46,8 @@ class RecordActivity : AppCompatActivity() {
         val s = getSharedPreferences("loginToken", Context.MODE_PRIVATE)
         token = s.getString("token", "")!!
         when(type){
-            "fav" -> viewModel.getFav(token).observe(this, mObserver)
-            "history" -> viewModel.getHistory(token).observe(this, mObserver)
+//            "fav" -> viewModel.getFav(token).observe(this, mObserver)
+//            "history" -> viewModel.getHistory(token).observe(this, mObserver)
         }
 
     }
